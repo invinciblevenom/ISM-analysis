@@ -103,40 +103,33 @@ def find_level(intersection_set, common_mat):
 
 
 def plot_it(driving_power, dependence_power):
-    root = Tk()
-    root.title('MICMAC Analysis')
+        fig = plt.figure(figsize=(6, 6), dpi=100)
+        ax = fig.add_subplot(111)
+        ax.scatter(dependence_power, driving_power)
+        pts = dict()
+        for i, txt in enumerate(range(n)):
+            t = (dependence_power[i], driving_power[i])
+            if t in pts:
+                pts[t].append(txt + 1)
+            else:
+                pts[t] = [txt + 1]
 
-    fig = plt.figure(figsize=(6, 6), dpi=100)
-    canvas = FigureCanvasTkAgg(fig, master=root)
-    canvas.get_tk_widget().pack()
+        for i, txt in enumerate(range(n)):
+            t = (dependence_power[i], driving_power[i])
+            ax.annotate(pts[t], t)
 
-    ax = fig.add_subplot(111)
-    ax.scatter(dependence_power, driving_power)
-    pts = dict()
-    for i, txt in enumerate(range(n)):
-        t = (dependence_power[i], driving_power[i])
-        if t in pts:
-            pts[t].append(txt + 1)
-        else:
-            pts[t] = [txt + 1]
+        x1, y1 = [-1, n + 1], [n / 2, n / 2]
+        x2, y2 = [n / 2, n / 2], [-1, n + 1]
+        ax.plot(x1, y1, x2, y2)
 
-    for i, txt in enumerate(range(n)):
-        t = (dependence_power[i], driving_power[i])
-        ax.annotate(pts[t], t)
+        ax.set_xlim(0, n + 1)
+        ax.set_ylim(0, n + 1)
+        ax.set_xlabel('Dependence Power')
+        ax.set_ylabel('Driving Power')
+        ax.set_title('MICMAC Analysis')
+        ax.grid()
 
-    x1, y1 = [-1, n + 1], [n / 2, n / 2]
-    x2, y2 = [n / 2, n / 2], [-1, n + 1]
-    ax.plot(x1, y1, x2, y2)
-
-    ax.set_xlim(0, n + 1)
-    ax.set_ylim(0, n + 1)
-    ax.set_xlabel('Dependence Power')
-    ax.set_ylabel('Driving Power')
-    ax.set_title('MICMAC Analysis')
-    ax.grid()
-
-    plt.show()
-    root.mainloop()
+        plt.show()
 
 
 n = int(input('Dimension of your Initial Reachability matrix:'))
@@ -160,7 +153,6 @@ levels = find_level(intersection_set, common_mat)
 
 plot_it(Driving_Power, Dependence_Power)
 
-# Printing the Levels Table
 table = PrettyTable()
 table.field_names = ['Variable(Risks)', 'Levels']
 
