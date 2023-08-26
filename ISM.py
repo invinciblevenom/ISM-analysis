@@ -1,10 +1,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from tkinter import *
 from prettytable import PrettyTable
-
 matplotlib.use('TkAgg')
 
 
@@ -29,7 +26,7 @@ class Graph:
 
 
 def print_final_reachability(initial, final):
-    mat = np.matrix(final)
+    np.matrix(final)
 
     for i in range(n):
         for j in range(n):
@@ -103,33 +100,33 @@ def find_level(intersection_set, common_mat):
 
 
 def plot_it(driving_power, dependence_power):
-        fig = plt.figure(figsize=(6, 6), dpi=100)
-        ax = fig.add_subplot(111)
-        ax.scatter(dependence_power, driving_power)
-        pts = dict()
-        for i, txt in enumerate(range(n)):
-            t = (dependence_power[i], driving_power[i])
-            if t in pts:
-                pts[t].append(txt + 1)
-            else:
-                pts[t] = [txt + 1]
+    fig = plt.figure(figsize=(6, 6), dpi=100)
+    ax = fig.add_subplot(111)
+    ax.scatter(dependence_power, driving_power)
+    pts = dict()
+    for i, txt in enumerate(range(n)):
+        t = (dependence_power[i], driving_power[i])
+        if t in pts:
+            pts[t].append(txt + 1)
+        else:
+            pts[t] = [txt + 1]
 
-        for i, txt in enumerate(range(n)):
-            t = (dependence_power[i], driving_power[i])
-            ax.annotate(pts[t], t)
+    for i, txt in enumerate(range(n)):
+        t = (dependence_power[i], driving_power[i])
+        ax.annotate(pts[t], t)
 
-        x1, y1 = [-1, n + 1], [n / 2, n / 2]
-        x2, y2 = [n / 2, n / 2], [-1, n + 1]
-        ax.plot(x1, y1, x2, y2)
+    x1, y1 = [-1, n + 1], [n / 2, n / 2]
+    x2, y2 = [n / 2, n / 2], [-1, n + 1]
+    ax.plot(x1, y1, x2, y2)
 
-        ax.set_xlim(0, n + 1)
-        ax.set_ylim(0, n + 1)
-        ax.set_xlabel('Dependence Power')
-        ax.set_ylabel('Driving Power')
-        ax.set_title('MICMAC Analysis')
-        ax.grid()
+    ax.set_xlim(0, n + 1)
+    ax.set_ylim(0, n + 1)
+    ax.set_xlabel('Dependence Power')
+    ax.set_ylabel('Driving Power')
+    ax.set_title('MICMAC Analysis')
+    ax.grid()
 
-        plt.show()
+    plt.show()
 
 
 n = int(input('Dimension of your Initial Reachability matrix:'))
