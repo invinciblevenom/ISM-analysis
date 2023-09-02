@@ -1,5 +1,7 @@
 # ISM_Analysis
 
+An Interpretive Structural Modelling approach for Building information modelling adoption.
+
 ## Class Graph:
 
 This class represents a directed graph and is used to calculate the transitive closure of the given graph using the Floyd-Warshall algorithm.
