@@ -28,3 +28,5 @@ The common matrix and intersection set are computed for level partitioning.
 The levels of variables are calculated using the find_level function.
 The plot_it function is called to visualize the relationships among variables using a scatter plot.
 Finally, a PrettyTable is created to display the levels of each variable in tabular form.
+
+### The data in inp.txt has been taken from a research paper and used here only for reference.
