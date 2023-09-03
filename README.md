@@ -1,4 +1,4 @@
-# ISM_Analysis
+# ISM-analysis
 
 An Interpretive Structural Modelling approach for Building information modelling adoption.
 
